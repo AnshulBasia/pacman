@@ -143,11 +143,54 @@ def breadthFirstSearch(problem):
     way.reverse()           # Since we want the way from source to destination
     return way
     util.raiseNotDefined()
-    util.raiseNotDefined()
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
-    "*** YOUR CODE HERE ***"
+    
+    from util import PriorityQueue
+    q=PriorityQueue()
+    pred={}
+    visited={}
+    action={}
+    path=[]
+    way=[]
+    temp=[]
+    q.push(problem.getStartState(),0)
+    i=0
+    while(not q.isEmpty()):
+        if(i==0):
+            state=q.pop()
+            cost=0
+            i=1
+        else:
+            temp=q.pop()
+            print temp[0]," with cost of ",temp[3]," pred is ",temp[1]
+            state=temp[0]
+            pred[temp[0]]=temp[1]
+            action[temp[0]]=temp[2]
+            cost=temp[3]
+        if(problem.isGoalState(state)):
+            print "FOUND",state
+            break
+        visited[state]=True
+        for x in problem.getSuccessors(state):
+            if(x[0] not in visited):
+                temp=[]
+                temp.append(x[0])
+                temp.append(state)
+                temp.append(x[1])
+                temp.append(x[2]+cost)
+                q.update(temp,x[2]+cost)
+                
+                
+
+    while(state!=problem.getStartState()):
+        path.append(pred[state])
+        way.append(action[state])
+        state=pred[state]
+    way.reverse() 
+    print path          # Since we want the way from source to destination
+    return way
     util.raiseNotDefined()
 
 def nullHeuristic(state, problem=None):

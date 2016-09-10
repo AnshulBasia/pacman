@@ -85,8 +85,6 @@ def depthFirstSearch(problem):
     #print "Start:", problem.getStartState()
     #print "Is the start a goal?", problem.isGoalState(problem.getStartState())
     #print "Start's successors:", problem.getSuccessors(problem.getStartState())
-    
-    "*** YOUR CODE HERE ***"
     from util import Stack
     pred={}
     visited={}
@@ -117,7 +115,33 @@ def depthFirstSearch(problem):
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
-    "*** YOUR CODE HERE ***"
+    from util import Queue
+    q=Queue()
+    pred={}
+    visited={}
+    action={}
+    path=[]
+    way=[]
+    q.push(problem.getStartState())
+    while(not q.isEmpty()):
+        state=q.pop()
+        visited[state]=True
+        if(problem.isGoalState(state)):
+            print "FOUND",state
+            break
+        for x in problem.getSuccessors(state):
+            if(x[0] not in visited):
+                q.push(x[0])
+                pred[x[0]]=state
+                action[x[0]]=x[1]
+
+    while(state!=problem.getStartState()):
+        path.append(pred[state])
+        way.append(action[state])
+        state=pred[state]
+    way.reverse()           # Since we want the way from source to destination
+    return way
+    util.raiseNotDefined()
     util.raiseNotDefined()
 
 def uniformCostSearch(problem):

@@ -131,6 +131,7 @@ def breadthFirstSearch(problem):
             break
         for x in problem.getSuccessors(state):
             if(x[0] not in visited):
+                visited[x[0]]=True
                 q.push(x[0])
                 pred[x[0]]=state
                 action[x[0]]=x[1]

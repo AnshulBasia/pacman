@@ -82,9 +82,9 @@ def depthFirstSearch(problem):
     To get started, you might want to try some of these simple commands to
     understand the search problem that is being passed in:
     """
-    print "Start:", problem.getStartState()
-    print "Is the start a goal?", problem.isGoalState(problem.getStartState())
-    print "Start's successors:", problem.getSuccessors(problem.getStartState())
+    #print "Start:", problem.getStartState()
+    #print "Is the start a goal?", problem.isGoalState(problem.getStartState())
+    #print "Start's successors:", problem.getSuccessors(problem.getStartState())
     
     "*** YOUR CODE HERE ***"
     from util import Stack
@@ -111,10 +111,7 @@ def depthFirstSearch(problem):
         path.append(pred[state])
         way.append(action[state])
         state=pred[state]
-    print path
-    print way
-    way.reverse()
-    print way
+    way.reverse()           # Since we want the way from source to destination
     return way
     util.raiseNotDefined()
 
